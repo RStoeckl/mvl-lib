@@ -1,14 +1,11 @@
 package at.mvl.mvllib.main;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
-import at.mvl.mvllib.converter.JsonToTermin;
 import at.mvl.mvllib.tools.Downloader;
+import at.mvl.mvllib.tools.Networker;
 import at.mvl.mvllib.tools.Parser;
 
 public class Main
@@ -23,7 +20,7 @@ public class Main
 
 		StringBuilder sb = new StringBuilder();
 
-		try (BufferedReader br = new BufferedReader(new FileReader("examples/termine.json")))
+		/*try (BufferedReader br = new BufferedReader(new FileReader("examples/termine.json")))
 		{
 			String line = "";
 			while ((line = br.readLine()) != null)
@@ -32,11 +29,11 @@ public class Main
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		// System.out.println(sb);
-		System.out.println(JsonToTermin.parseTermine(sb.toString()).get(0));
-
-		System.out.println(Downloader.downloadToFile("http://192.168.56.4/perl/termine.pl", new File("/home/richi/Dokumente/Java/Daheim/mvl-lib/examples/termine.json.pl")));
+		//System.out.println(JsonToTermin.parseTermine(sb.toString()).get(0));
+		System.out.println(Networker.doRequest("http://192.168.56.4/perl/termine.pl", "OK"));
+		System.out.println(Downloader.downloadToFile("http://192.168.56.4/query/termine.json", new File("/home/richi/Dokumente/Java/Daheim/mvl-lib/examples/termine.json")));
 	}
 
 }

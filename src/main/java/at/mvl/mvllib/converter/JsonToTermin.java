@@ -11,11 +11,16 @@ import at.mvl.mvllib.tools.Parser;
 
 public class JsonToTermin
 {
+	/**
+	 * turns JSON text into a collection of Termin
+	 * @param rawjson must be JSON text
+	 * @return returns the parsed parameter
+	 */
 	public static ArrayList<Termin> parseTermine(String rawjson)
 	{
 		ArrayList<Termin> ret = new ArrayList<>();
 		JSONArray termine = new JSONArray(rawjson);
-		for (int i = 0; i < termine.length(); i++)
+		for (int i = 1; i < termine.length(); i++)
 		{
 			JSONObject rawtermin = termine.getJSONObject(i);
 			
