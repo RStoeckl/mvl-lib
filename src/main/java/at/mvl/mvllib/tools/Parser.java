@@ -2,8 +2,19 @@ package at.mvl.mvllib.tools;
 
 import java.util.GregorianCalendar;
 
+/**
+ * provides some methods for parsing some perl outputs
+ * @author richi
+ *
+ */
 public class Parser
 {
+	
+	/**
+	 * turns perl date into java date
+	 * @param raw must not be null, must be a perl date
+	 * @return the date from input as a GregorianCalendar
+	 */
 	public static GregorianCalendar parseDate(String raw)
 	{
 		if (raw == null)

@@ -7,10 +7,23 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ * a class about some network utils
+ * @author richi
+ *
+ */
 public class Networker
 {
+	/**
+	 * does only a single request without much traffic, handy for executing a serverside script
+	 * @param url must not be null
+	 * @param check can be null, string which will be compared with the first line from the output from the url request
+	 * @return only true if check is null or check is equal with the first line from the read text from the output from the url
+	 */
 	public static boolean doRequest(String url, String check)
 	{
+		if(url==null)
+			return false;
 		try
 		{
 			URL neturl = new URL(url);
