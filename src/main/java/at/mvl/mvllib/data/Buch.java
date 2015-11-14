@@ -69,7 +69,7 @@ public class Buch extends ArrayList<Seite>
 	 */
 	public Buch searchFor(String name)
 	{
-		Buch ret = new Buch(id, name);
+		Buch ret = new Buch(id, this.name);
 		for(Seite s : this)
 			if(s.getTitel().contains(name))
 				ret.add(s);
