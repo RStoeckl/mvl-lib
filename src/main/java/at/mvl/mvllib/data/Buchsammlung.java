@@ -1,7 +1,6 @@
 package at.mvl.mvllib.data;
 
-import java.util.HashMap;
-import java.util.Set;
+import java.util.ArrayList;
 
 /**
  * represents a collection of books
@@ -9,7 +8,7 @@ import java.util.Set;
  * @author richi
  *
  */
-public class Buchsammlung extends HashMap<Integer, Buch>
+public class Buchsammlung extends ArrayList<Buch>
 {
 
 	/**
@@ -27,17 +26,9 @@ public class Buchsammlung extends HashMap<Integer, Buch>
 	public Buchsammlung searchFor(String name)
 	{
 		Buchsammlung ret = new Buchsammlung();
-		for (int buchnummer : this.keySet())
+		for (Buch b : this)
 		{
-			Buch buch = this.get(buchnummer);
-			Set<Integer> nummern = buch.searchFor(name);
-			if (!nummern.isEmpty())
-			{
-				Buch adding = new Buch(buch.getName());
-				for (int resnummer : nummern)
-					buch.putPage(resnummer, adding.getPage(resnummer));
-				ret.put(buchnummer, adding);
-			}
+			ret.add(b.searchFor(name));
 		}
 		return ret;
 	}

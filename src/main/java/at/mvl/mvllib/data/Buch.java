@@ -1,6 +1,6 @@
 package at.mvl.mvllib.data;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,21 +10,26 @@ import java.util.Set;
  * @author richi
  *
  */
-public class Buch
+public class Buch extends ArrayList<Seite>
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7409576451315560606L;
 	private String name;
-	private HashMap<Integer, String> pages;
+	private int id;
 
-	public Buch(String name, HashMap<Integer, String> pages)
+	public Buch(int id, String name, ArrayList<Seite> seiten)
 	{
 		super();
 		this.name = name;
-		this.pages = pages;
+		if(seiten !=null)
+			addAll(seiten);
 	}
 
-	public Buch(String name)
+	public Buch(int id, String name)
 	{
-		this(name, new HashMap<Integer, String>());
+		this(id, name, new ArrayList<Seite>());
 	}
 
 	/**
@@ -37,30 +42,24 @@ public class Buch
 	}
 
 	/**
-	 * 
-	 * @param number
-	 *            number of the page
-	 * @return name of the page
-	 */
-	public String getPage(int number)
-	{
-		return pages.get(number);
-	}
-
-	/**
 	 * puts page into book and overwrites and old one if necessary
 	 * 
 	 * @param number
 	 *            number of the page
 	 * @param name
 	 *            name of the page
+	 *            
+	 * @param overwrite
+	 * 			  if true it overwrites existing pages
 	 * @return true if replaced an old one
 	 */
-	public boolean putPage(int number, String name)
+	public boolean putPage(int number, String name, boolean overwrite)
 	{
-		boolean ret = pages.containsValue(number);
-		pages.put(number, name);
-		return ret;
+		Seite seite = new Seite(number, name);
+		if(contains(seite) && !overwrite)
+			return false;
+		add(seite);
+		return true;
 	}
 
 	/**
@@ -68,15 +67,12 @@ public class Buch
 	 * @param name what are you looking for
 	 * @return all pages number which includes the given name
 	 */
-	public Set<Integer> searchFor(String name)
+	public Buch searchFor(String name)
 	{
-		HashSet<Integer> ret = new HashSet<>();
-		for (int number : pages.keySet())
-		{
-			String value = pages.get(number);
-			if (value != null && value.contains(name))
-				ret.add(number);
-		}
+		Buch ret = new Buch(id, name);
+		for(Seite s : this)
+			if(s.getTitel().contains(name))
+				ret.add(s);
 		return ret;
 	}
 	
@@ -86,6 +82,40 @@ public class Buch
 	 */
 	public Set<Integer> getNumbers()
 	{
-		return pages.keySet();
+		HashSet<Integer> ret = new HashSet<>();
+		for (Seite s : this)
+			ret.add(s.getNummer());
+		return ret;
 	}
+
+	public int getId()
+	{
+		return id;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Buch other = (Buch) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+	
+	
 }

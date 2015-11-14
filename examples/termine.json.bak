@@ -1,45 +1,76 @@
 [
    {
-      "timestamp" : "Tue Oct 27 15:50:13 2015"
+      "timestamp" : "Sat Nov 14 17:02:08 2015"
    },
    {
-      "beschreibung" : null,
-      "name" : "Allerheiligen",
-      "adjustierung" : "Mantel mit Hut",
-      "beginn" : "2015-11-01 10:45:00",
-      "treffpunkt" : "Feuerwehr",
-      "id" : "1",
-      "adjid" : "4",
-      "dauer" : null
+      "bid" : "1",
+      "name" : "Rotes Buch",
+      "seiten" : [
+         {
+            "titel" : "Unter dem Doppeladler",
+            "nummer" : "1"
+         },
+         {
+            "titel" : "Alte Kameraden",
+            "nummer" : "2"
+         },
+         {
+            "titel" : "Radetzky-Marsch",
+            "nummer" : "3"
+         },
+         {
+            "titel" : "Alt-Starhemberg Marsch",
+            "nummer" : "4"
+         },
+         {
+            "titel" : "Oh du mein Österreich",
+            "nummer" : "5"
+         },
+         {
+            "titel" : "Deutschmeister-Regiments-Marsch",
+            "nummer" : "6"
+         }
+      ]
    },
    {
-      "beschreibung" : null,
-      "name" : "Adventmarkt",
-      "adjustierung" : null,
-      "beginn" : "2015-11-21 17:00:00",
-      "treffpunkt" : "Schubertpark",
-      "id" : "2",
-      "adjid" : null,
-      "dauer" : null
+      "bid" : "2",
+      "name" : "Grünes Buch",
+      "seiten" : [
+         {
+            "titel" : "Willkommen - Na privitanou",
+            "nummer" : "1"
+         },
+         {
+            "titel" : "Maruschka - Polka",
+            "nummer" : "2"
+         },
+         {
+            "titel" : "Hei, ihr Gänschen, hei - Haj, Husicky, haj",
+            "nummer" : "3"
+         },
+         {
+            "titel" : "Südböhmische Polka",
+            "nummer" : "4"
+         },
+         {
+            "titel" : "Nas mate - Unser Matthias",
+            "nummer" : "5"
+         },
+         {
+            "titel" : "Prerovanka",
+            "nummer" : "6"
+         }
+      ]
    },
    {
-      "beschreibung" : null,
-      "name" : "Krampuskonzert",
-      "adjustierung" : "Uniform ohne Hut",
-      "beginn" : "2015-12-05 18:00:00",
-      "treffpunkt" : "Gasthaus List",
-      "id" : "3",
-      "adjid" : "1",
-      "dauer" : null
+      "bid" : "3",
+      "name" : "Blaues Buch",
+      "seiten" : []
    },
    {
-      "beschreibung" : null,
-      "name" : "Turmblasen",
-      "adjustierung" : "Mantel mit Hut",
-      "beginn" : "2015-12-24 23:00:00",
-      "treffpunkt" : "vor der Kirche",
-      "id" : "4",
-      "adjid" : "4",
-      "dauer" : null
+      "bid" : "4",
+      "name" : "Große Mappe",
+      "seiten" : []
    }
 ]
+
