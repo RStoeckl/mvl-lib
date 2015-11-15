@@ -17,7 +17,7 @@ public class Main
 		String serverjson = "http://192.168.56.4/query/buecher.json";
 		System.out.println(Networker.doRequest(request, "OK"));
 		System.out.println(Downloader.downloadToFile(serverjson, local));
-		System.out.println(JsonToBuchsammlung.parseBuchsammlung(StringArtist.read(local)).get(1).get(1).getTitel());
+		System.out.println(JsonToBuchsammlung.parseBuchsammlung(StringArtist.read(local)).searchFor("a").get(0).getName());
 	}
 
 }
