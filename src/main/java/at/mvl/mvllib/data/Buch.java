@@ -71,7 +71,7 @@ public class Buch extends ArrayList<Seite>
 	{
 		Buch ret = new Buch(id, this.name);
 		for(Seite s : this)
-			if(s.getTitel().toLowerCase().contains(name.toLowerCase()))
+			if(s.getTitel().toLowerCase().contains(name.toLowerCase())||(""+s.getNummer()).contains(name))
 				ret.add(s);
 		return ret;
 	}
