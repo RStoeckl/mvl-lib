@@ -69,13 +69,24 @@ public class Buch extends ArrayList<Seite>
 	 *            what are you looking for
 	 * @return all pages number which includes the given name
 	 */
-	public Buch searchFor(String name)
+	public Buch searchFor(String name, String pattern)
 	{
 		Buch ret = new Buch(id, this.name);
 		for (Seite s : this)
-			if (s.getTitel().toLowerCase().contains(name.toLowerCase()) || ("" + s.getNummer()).contains(name))
+			if (prepareTitle(s.getTitel(), pattern).contains(prepareTitle(name, pattern)) || ("" + s.getNummer()).contains(name))
 				ret.add(s);
 		return ret;
+	}
+
+	private String prepareTitle(String title, String pattern)
+	{
+		if (title == null || pattern == null)
+			return "";
+		char[] chars = pattern.toCharArray();
+		for (char c : chars)
+			title = title.replace(c + "", "");
+		title = title.toLowerCase();
+		return title;
 	}
 
 	/**
@@ -121,6 +132,7 @@ public class Buch extends ArrayList<Seite>
 
 	/**
 	 * get the page with the highest number
+	 * 
 	 * @return the page with the highest number
 	 */
 	public Seite getLastPage()

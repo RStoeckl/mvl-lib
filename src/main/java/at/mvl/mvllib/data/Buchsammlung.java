@@ -23,12 +23,12 @@ public class Buchsammlung extends ArrayList<Buch>
 	 *            string to search
 	 * @return all books with containment
 	 */
-	public Buchsammlung searchFor(String name)
+	public Buchsammlung searchFor(String name, String pattern)
 	{
 		Buchsammlung ret = new Buchsammlung();
 		for (Buch b : this)
 		{
-			ret.add(b.searchFor(name));
+			ret.add(b.searchFor(name, pattern));
 		}
 		return ret;
 	}
