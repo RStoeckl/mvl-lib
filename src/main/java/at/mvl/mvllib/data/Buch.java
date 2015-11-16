@@ -23,7 +23,7 @@ public class Buch extends ArrayList<Seite>
 	{
 		super();
 		this.name = name;
-		if(seiten !=null)
+		if (seiten != null)
 			addAll(seiten);
 	}
 
@@ -48,15 +48,15 @@ public class Buch extends ArrayList<Seite>
 	 *            number of the page
 	 * @param name
 	 *            name of the page
-	 *            
+	 * 
 	 * @param overwrite
-	 * 			  if true it overwrites existing pages
+	 *            if true it overwrites existing pages
 	 * @return true if replaced an old one
 	 */
 	public boolean putPage(int number, String name, boolean overwrite)
 	{
 		Seite seite = new Seite(number, name);
-		if(contains(seite) && !overwrite)
+		if (contains(seite) && !overwrite)
 			return false;
 		add(seite);
 		return true;
@@ -64,18 +64,20 @@ public class Buch extends ArrayList<Seite>
 
 	/**
 	 * searches for a title from a page
-	 * @param name what are you looking for
+	 * 
+	 * @param name
+	 *            what are you looking for
 	 * @return all pages number which includes the given name
 	 */
 	public Buch searchFor(String name)
 	{
 		Buch ret = new Buch(id, this.name);
-		for(Seite s : this)
-			if(s.getTitel().toLowerCase().contains(name.toLowerCase())||(""+s.getNummer()).contains(name))
+		for (Seite s : this)
+			if (s.getTitel().toLowerCase().contains(name.toLowerCase()) || ("" + s.getNummer()).contains(name))
 				ret.add(s);
 		return ret;
 	}
-	
+
 	/**
 	 * 
 	 * @return all put pages
@@ -116,6 +118,22 @@ public class Buch extends ArrayList<Seite>
 			return false;
 		return true;
 	}
-	
-	
+
+	/**
+	 * get the page with the highest number
+	 * @return the page with the highest number
+	 */
+	public Seite getLastPage()
+	{
+		Seite ret = null;
+		for (Seite seite : this)
+		{
+			if (ret == null)
+				ret = seite;
+			else if (seite != null && seite.getNummer() > ret.getNummer())
+				ret = seite;
+		}
+		return ret;
+	}
+
 }
