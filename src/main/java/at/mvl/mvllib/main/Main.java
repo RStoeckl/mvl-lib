@@ -22,7 +22,7 @@ public class Main
 		Collections.shuffle(sammlung.get(0));
 		System.out.println(sammlung.get(0));
 		Collections.sort(sammlung.get(0), new SeiteTitelComparator(false));
-		System.out.println(sammlung.get(0));
+		System.out.println(sammlung.get(0).getId());
 	}
 
 }

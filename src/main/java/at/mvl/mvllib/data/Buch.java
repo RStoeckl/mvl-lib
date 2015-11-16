@@ -23,6 +23,7 @@ public class Buch extends ArrayList<Seite>
 	{
 		super();
 		this.name = name;
+		this.id = id;
 		if (seiten != null)
 			addAll(seiten);
 	}

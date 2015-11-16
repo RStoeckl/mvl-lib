@@ -26,6 +26,7 @@ public class JsonToBuchsammlung
 		{
 			JSONObject rawbook = array.getJSONObject(i);
 			int buchid = rawbook.getInt("bid");
+			System.out.println(buchid);
 			String name = rawbook.getString("name");
 			Buch buch = new Buch(buchid, name);
 			JSONArray seiten = rawbook.getJSONArray("seiten");
