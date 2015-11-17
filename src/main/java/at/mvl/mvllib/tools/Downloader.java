@@ -129,7 +129,7 @@ public class Downloader
 		{
 			fos = new FileOutputStream(target);
 			ReadableByteChannel rbc = Channels.newChannel(online.openStream());
-			fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+			fos.getChannel().transferFrom(rbc, 0, Integer.MAX_VALUE);
 		} catch (IOException e)
 		{
 			e.printStackTrace();
