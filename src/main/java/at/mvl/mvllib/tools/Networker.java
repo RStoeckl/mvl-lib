@@ -9,31 +9,62 @@ import java.net.URL;
 
 /**
  * a class about some network utils
+ * 
  * @author richi
  *
  */
 public class Networker
 {
 	/**
-	 * does only a single request without much traffic, handy for executing a serverside script
-	 * @param url must not be null
-	 * @param check can be null, string which will be compared with the first line from the output from the url request
-	 * @return only true if check is null or check is equal with the first line from the read text from the output from the url
+	 * does only a single request without much traffic, handy for executing a
+	 * serverside script
+	 * 
+	 * @param url
+	 *            must not be null
+	 * @param check
+	 *            can be null, string which will be compared with the first line
+	 *            from the output from the url request
+	 * @return only true if check is null or check is equal with the first line
+	 *         from the read text from the output from the url
 	 */
 	public static boolean doRequest(String url, String check)
 	{
-		if(url==null)
+		if (url == null)
 			return false;
 		try
 		{
 			URL neturl = new URL(url);
-			try (InputStream is = neturl.openStream(); BufferedReader br = new BufferedReader(new InputStreamReader(is)))
+
+			InputStream is = null;
+			BufferedReader br = null;
+
+			try
 			{
+				is = neturl.openStream();
+				br = new BufferedReader(new InputStreamReader(is));
 				boolean isNull = check == null;
 				return isNull || check.equalsIgnoreCase(br.readLine());
 			} catch (IOException e)
 			{
 				e.printStackTrace();
+			} finally
+			{
+				if (is != null)
+					try
+					{
+						is.close();
+					} catch (IOException e)
+					{
+						e.printStackTrace();
+					}
+				if (br != null)
+					try
+					{
+						br.close();
+					} catch (IOException e)
+					{
+						e.printStackTrace();
+					}
 			}
 		} catch (MalformedURLException e)
 		{

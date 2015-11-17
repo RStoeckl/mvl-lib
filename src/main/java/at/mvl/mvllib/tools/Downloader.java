@@ -11,10 +11,12 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
-import java.nio.file.Files;
+
+import org.apache.commons.io.FileUtils;
 
 /**
  * represents an amount of download helpers
+ * 
  * @author richi
  *
  */
@@ -41,12 +43,15 @@ public class Downloader
 				e1.printStackTrace();
 				return false;
 			}
-		try (FileInputStream fis = new FileInputStream(target))
+		FileInputStream fis = null;
+		try
 		{
+			fis = new FileInputStream(target);
+
 			URL online = new URL(url);
 			URLConnection connection = online.openConnection();
 			File backup = new File(target.toString() + ".bak");
-			copy(target, backup);
+			FileUtils.copyFile(target, backup);
 			if (!thirdLine(connection.getInputStream()).equalsIgnoreCase(thirdLine(fis)))
 			{
 				return download(online, target);
@@ -54,6 +59,15 @@ public class Downloader
 		} catch (IOException e)
 		{
 			e.printStackTrace();
+		} finally
+		{
+			if (fis != null)
+				try
+				{
+					fis.close();
+				} catch (IOException e)
+				{
+				}
 		}
 		return false;
 	}
@@ -70,13 +84,26 @@ public class Downloader
 		if (is == null)
 			return "";
 		String line = "";
-		try (BufferedReader br = new BufferedReader(new InputStreamReader(is)))
+		BufferedReader br = null;
+		try
 		{
+			br = new BufferedReader(new InputStreamReader(is));
+
 			for (int i = 0; i <= 2; i++)
 				line = br.readLine();
 		} catch (IOException e)
 		{
 			e.printStackTrace();
+		} finally
+		{
+			if (br != null)
+				try
+				{
+					br.close();
+				} catch (IOException e)
+				{
+					e.printStackTrace();
+				}
 		}
 		if (line == null)
 			line = "";
@@ -97,38 +124,26 @@ public class Downloader
 	{
 		if (online == null || target == null)
 			return false;
-		try (FileOutputStream fos = new FileOutputStream(target))
+		FileOutputStream fos = null;
+		try
 		{
+			fos = new FileOutputStream(target);
 			ReadableByteChannel rbc = Channels.newChannel(online.openStream());
 			fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
 		} catch (IOException e)
 		{
 			e.printStackTrace();
 			return false;
-		}
-		return true;
-	}
-
-	/**
-	 * copies one file to the other
-	 * 
-	 * @param from
-	 *            must not be null
-	 * @param to
-	 *            must not be null
-	 * @return if successful or not
-	 */
-	private static boolean copy(File from, File to)
-	{
-		if (from == null || to == null)
-			return false;
-		try
+		} finally
 		{
-			Files.copy(from.toPath(), new FileOutputStream(to));
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-			return false;
+			if (fos != null)
+				try
+				{
+					fos.close();
+				} catch (IOException e)
+				{
+					e.printStackTrace();
+				}
 		}
 		return true;
 	}

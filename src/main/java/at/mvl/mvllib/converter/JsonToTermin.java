@@ -18,7 +18,7 @@ public class JsonToTermin
 	 */
 	public static ArrayList<Termin> parseTermine(String rawjson)
 	{
-		ArrayList<Termin> ret = new ArrayList<>();
+		ArrayList<Termin> ret = new ArrayList<Termin>();
 		JSONArray termine = new JSONArray(rawjson);
 		for (int i = 1; i < termine.length(); i++)
 		{

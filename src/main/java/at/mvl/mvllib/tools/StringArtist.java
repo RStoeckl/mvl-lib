@@ -27,14 +27,26 @@ public class StringArtist
 		if (file == null)
 			return null;
 		StringBuilder sb = new StringBuilder();
-		try (BufferedReader br = new BufferedReader(new FileReader(file)))
+		BufferedReader br = null;
+		try
 		{
+			br = new BufferedReader(new FileReader(file));
 			String line = "";
 			while ((line = br.readLine()) != null)
 				sb.append(line);
 		} catch (IOException e)
 		{
 			e.printStackTrace();
+		} finally
+		{
+			if (br != null)
+				try
+				{
+					br.close();
+				} catch (IOException e)
+				{
+					e.printStackTrace();
+				}
 		}
 		return sb.toString();
 	}

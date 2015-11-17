@@ -96,7 +96,7 @@ public class Buch extends ArrayList<Seite>
 	 */
 	public Set<Integer> getNumbers()
 	{
-		HashSet<Integer> ret = new HashSet<>();
+		HashSet<Integer> ret = new HashSet<Integer>();
 		for (Seite s : this)
 			ret.add(s.getNummer());
 		return ret;
