@@ -3,14 +3,11 @@ package at.mvl.mvllib.tools;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.channels.Channels;
-import java.nio.channels.ReadableByteChannel;
 
 import org.apache.commons.io.FileUtils;
 
@@ -124,7 +121,8 @@ public class Downloader
 	{
 		if (online == null || target == null)
 			return false;
-		FileOutputStream fos = null;
+		// Quite shitty code...
+		/*FileOutputStream fos = null;
 		try
 		{
 			fos = new FileOutputStream(target);
@@ -144,6 +142,14 @@ public class Downloader
 				{
 					e.printStackTrace();
 				}
+		}*/
+		try
+		{
+			FileUtils.copyURLToFile(online, target);
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+			return false;
 		}
 		return true;
 	}
