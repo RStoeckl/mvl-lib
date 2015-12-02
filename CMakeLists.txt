@@ -4,3 +4,5 @@ project(mvllib)
 subdirs(src)
 
 
+
+add_subdirectory(src/data)
