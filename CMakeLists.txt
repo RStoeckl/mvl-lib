@@ -1,8 +1,5 @@
-cmake_minimum_required(VERSION 2.6)
-project(mvllib)
+cmake_minimum_required()
 
-subdirs(src)
+add_executable(mvllib main.cpp)
 
-
-
-add_subdirectory(src/data)
+install(TARGETS mvllib RUNTIME DESTINATION bin)

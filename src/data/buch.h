@@ -17,36 +17,38 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *
  */
+
+#include <list>
 #include <string>
-#include <ctime>
+#include <set>
+#include "seite.h"
 
-
-#ifndef TERMIN_H
-#define TERMIN_H
+#ifndef BUCH_H
+#define BUCH_H
 
 using namespace std;
 
-class Termin
+class Buch :  list<Seite>
 {
 public:
-    Termin();
-    Termin(const Termin& other);
-    ~Termin();
-    Termin& operator=(const Termin& other);
-    bool operator==(const Termin& other) const;
+    Buch();
+    Buch(const Buch& other);
+    ~Buch();
+    Buch& operator=(const Buch& other);
+    bool operator==(const Buch& other) const;
+    
     string getName();
-    string getDauer();
-    string getTreffpunkt();
-    string getBeschreibung();
-    string getAdjustierung();
-    getBeginn();
+    bool putPage(int number, string name, bool overwrite);
+    Buch* searchFor();
+    set<int>* getNumbers();
+    int getId();
+    Seite* getLastPage();
+    
 private:
-  string name;
-  string dauer;
-  string treffpunkt;
-  string beschreibung;
-  string adjustierung;
-  struct beginn;
+    string name;
+    int id;
+    
+    string prepareTitle();
 };
 
-#endif // TERMIN_H
+#endif // BUCH_H

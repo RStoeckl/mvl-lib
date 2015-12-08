@@ -17,36 +17,52 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *
  */
-#include <string>
-#include <ctime>
 
+#include "buch.h"
 
-#ifndef TERMIN_H
-#define TERMIN_H
-
-using namespace std;
-
-class Termin
+Buch::Buch()
 {
-public:
-    Termin();
-    Termin(const Termin& other);
-    ~Termin();
-    Termin& operator=(const Termin& other);
-    bool operator==(const Termin& other) const;
-    string getName();
-    string getDauer();
-    string getTreffpunkt();
-    string getBeschreibung();
-    string getAdjustierung();
-    getBeginn();
-private:
-  string name;
-  string dauer;
-  string treffpunkt;
-  string beschreibung;
-  string adjustierung;
-  struct beginn;
-};
 
-#endif // TERMIN_H
+}
+
+Buch::Buch(const Buch& other)
+{
+
+}
+
+Buch::~Buch()
+{
+
+}
+
+Buch& Buch::operator=(const Buch& other)
+{
+
+}
+
+bool Buch::operator==(const Buch& other) const
+{
+
+}
+
+string Buch::getName()
+{
+  return name;
+}
+
+//TODO implement
+bool Buch::putPage(int number, string name, bool overwrite)
+{
+  //TODO implement constructor
+  Seite* seite = new Seite(number, name);
+}
+
+Buch* Buch::searchFor(string name, string pattern)
+{
+
+  for(Seite s : this){
+    if(prepareTitle(s.getTitel(), pattern))
+  }
+}
+
+
