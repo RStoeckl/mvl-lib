@@ -28,7 +28,7 @@ using namespace std;
 class Seite
 {
 public:
-    Seite();
+    Seite(int number, string name);
     Seite(const Seite& other);
     ~Seite();
     Seite& operator=(const Seite& other);

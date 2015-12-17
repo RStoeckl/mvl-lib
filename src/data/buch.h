@@ -39,10 +39,10 @@ public:
     
     string getName();
     bool putPage(int number, string name, bool overwrite);
-    Buch* searchFor();
-    set<int>* getNumbers();
+    Buch& searchFor(string name, string pattern);
+    set<int>& getNumbers();
     int getId();
-    Seite* getLastPage();
+    Seite& getLastPage();
     
 private:
     string name;

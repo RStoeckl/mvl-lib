@@ -20,9 +20,10 @@
 
 #include "seite.h"
 
-Seite::Seite()
+Seite::Seite(int number, string name)
 {
-  
+  this->nummer = number;
+  this->titel = name;
 }
 
 Seite::Seite(const Seite& other)

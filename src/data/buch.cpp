@@ -19,10 +19,13 @@
  */
 
 #include "buch.h"
+#include "list"
+#include "seite.h"
 
-Buch::Buch()
+Buch::Buch(int id, string name)
 {
-
+  
+  
 }
 
 Buch::Buch(const Buch& other)
@@ -55,14 +58,42 @@ bool Buch::putPage(int number, string name, bool overwrite)
 {
   //TODO implement constructor
   Seite* seite = new Seite(number, name);
+  list::insert(seite);
 }
 
-Buch* Buch::searchFor(string name, string pattern)
+Buch& Buch::searchFor(string name, string pattern)
 {
 
-  for(Seite s : this){
+  /*for(Seite s : this){
     if(prepareTitle(s.getTitel(), pattern))
+  }*/
+  Buch* b = new Buch(getName());
+  for(Seite s : this)
+  {
+    int found = prepareTitle(s.getTitel(), pattern).find(name);
+    if(found>=0&&found<=s.getTitel().length())
+      b->putPage(s);
+    delete found;
   }
+  return b*&;
+}
+
+set<int>& Buch::getNumbers()
+{
+  set<int>* ret = new set<int>();
+  for(Seite* s : this)
+    ret->insert(s->getNummer());
+  return ret*&;
+}
+
+int Buch::getId()
+{
+  return id;
+}
+
+Seite& Buch::getLastPage()
+{
+  
 }
 
 
